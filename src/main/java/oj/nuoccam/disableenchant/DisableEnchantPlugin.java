@@ -19,17 +19,19 @@ public class DisableEnchantPlugin extends JavaPlugin {
 
     @Getter
     private static DisableEnchantPlugin instance;
+    
+    // Đổi tên từ config thành yamlConfig để tránh trùng với hàm mặc định của Bukkit
     @Getter
-    private YamlDocument config;
+    private YamlDocument yamlConfig; 
+    
     private PaperCommandManager commandManager;
 
     @Override
     public void onEnable() {
         instance = this;
 
-        // 1. Khởi tạo Config (BoostedYAML)
         try {
-            config = YamlDocument.create(new File(getDataFolder(), "config.yml"),
+            yamlConfig = YamlDocument.create(new File(getDataFolder(), "config.yml"),
                     getResource("config.yml"),
                     GeneralSettings.DEFAULT,
                     LoaderSettings.builder().setAutoUpdate(true).build(),
@@ -37,30 +39,21 @@ public class DisableEnchantPlugin extends JavaPlugin {
                     UpdaterSettings.builder().setVersioning(new BasicVersioning("config-version")).build()
             );
         } catch (IOException e) {
-            getLogger().severe("Không thể tải config.yml!");
+            getLogger().severe("Không thể khởi tạo tệp cấu hình!");
             e.printStackTrace();
         }
 
-        // 2. Đăng ký lệnh (ACF)
         commandManager = new PaperCommandManager(this);
         commandManager.registerCommand(new MainCommand());
 
-        // 3. Đăng ký Listener
         getServer().getPluginManager().registerEvents(new EnchantListener(), this);
 
-        getLogger().info("Plugin đã khởi động thành công trên phiên bản 1.21.x!");
-    }
-
-    @Override
-    public void onDisable() {
-        if (commandManager != null) {
-            commandManager.unregisterCommands();
-        }
+        getLogger().info("Plugin DisableEnchant đã sẵn sàng!");
     }
 
     public void reloadPluginConfig() {
         try {
-            config.reload();
+            yamlConfig.reload();
         } catch (IOException e) {
             e.printStackTrace();
         }
