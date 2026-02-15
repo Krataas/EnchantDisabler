@@ -11,14 +11,14 @@ import oj.nuoccam.disableenchant.DisableEnchantPlugin;
 public class MainCommand extends BaseCommand {
 
     @Subcommand("reload")
-    @Description("Tải lại file cấu hình")
+    @Description("Làm mới cấu hình hệ thống")
     public void onReload(CommandSender sender) {
         DisableEnchantPlugin.getInstance().reloadPluginConfig();
         
-        String prefix = DisableEnchantPlugin.getInstance().getConfig().getString("messages.prefix");
-        String msg = DisableEnchantPlugin.getInstance().getConfig().getString("messages.reload");
+        // Gọi getYamlConfig() thay vì getConfig()
+        String prefix = DisableEnchantPlugin.getInstance().getYamlConfig().getString("messages.prefix");
+        String msg = DisableEnchantPlugin.getInstance().getYamlConfig().getString("messages.reload");
         
-        // Sử dụng MiniMessage (Paper API 1.21) để hỗ trợ màu RGB/Gradient
         sender.sendMessage(MiniMessage.miniMessage().deserialize(prefix + msg));
     }
 }
