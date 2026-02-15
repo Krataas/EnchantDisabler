@@ -1,0 +1,13 @@
+name: AdvancedDisableEnchant
+version: '${version}'
+main: vn.yourname.disableenchant.DisableEnchantPlugin
+api-version: '1.21'
+authors: [ Gemini ]
+description: Plugin chặn Enchant chuyên nghiệp sử dụng ACF và BoostedYAML.
+permissions:
+  disableenchant.admin:
+    description: Quyền reload và quản lý plugin
+    default: op
+  disableenchant.bypass:
+    description: Quyền bỏ qua chặn enchant
+    default: false

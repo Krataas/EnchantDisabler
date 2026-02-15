@@ -1,0 +1,16 @@
+# ==========================================
+#      Advanced Disable Enchant Config
+# ==========================================
+
+# Danh sách các Enchant bị cấm.
+# Sử dụng tên chuẩn của Bukkit (https://hub.spigotmc.org/javadocs/spigot/org/bukkit/enchantments/Enchantment.html)
+disabled-enchants:
+  - "MENDING"
+  - "SHARPNESS"
+
+messages:
+  prefix: "<gradient:#ff5e5e:#ffc4c4><b>[DisableEnchant]</b></gradient> "
+  reload: "<green>Cấu hình đã được tải lại thành công!</green>"
+  blocked-anvil: "<red>Bạn không thể sử dụng phù phép này trong đe!</red>"
+  blocked-table: "<red>Phù phép này đã bị cấm!</red>"
+  no-permission: "<red>Bạn không có quyền làm điều này.</red>"
