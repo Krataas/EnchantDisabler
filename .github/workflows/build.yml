@@ -2,15 +2,13 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ "main", "master" ] # Tự động chạy khi có code mới ở nhánh chính
+    branches: [ "main", "master" ]
   pull_request:
     branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
 
     steps:
     - uses: actions/checkout@v4
@@ -20,16 +18,13 @@ jobs:
       with:
         java-version: '21'
         distribution: 'temurin'
-        cache: gradle
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-
+    # Thay vì dùng ./gradlew, ta dùng lệnh 'gradle' có sẵn của máy ảo GitHub
     - name: Build with Gradle
-      run: ./gradlew shadowJar # Chạy lệnh build plugin (đã bao gồm libs)
+      run: gradle shadowJar 
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
         name: DisableEnchant-Plugin
-        path: build/libs/*.jar # GitHub sẽ gom file .jar lại cho bạn tải
+        path: build/libs/*.jar
