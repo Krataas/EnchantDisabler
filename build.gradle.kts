@@ -1,5 +1,6 @@
 plugins {
     java
+    id("com.github.johnrengelman.shadow") version "8.1.1"
     id("io.papermc.paper.weight.userdev") version "1.7.1" // Plugin hỗ trợ NMS/Paper tốt nhất
     id("xyz.jpenilla.run-paper") version "2.3.0" // Hỗ trợ chạy test server nhanh
     id("net.kyori.blossom") version "1.3.1" // Thay thế token lúc build
